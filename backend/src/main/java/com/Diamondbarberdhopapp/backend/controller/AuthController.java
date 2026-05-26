@@ -1,11 +1,14 @@
 package com.Diamondbarberdhopapp.backend.controller;
 
 import com.Diamondbarberdhopapp.backend.DTO.AuthRequest;
-import com.Diamondbarberdhopapp.backend.service.JwtService;
 import com.Diamondbarberdhopapp.backend.entity.User;
 import com.Diamondbarberdhopapp.backend.repository.UserRepository;
+import com.Diamondbarberdhopapp.backend.service.JwtService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -31,12 +34,13 @@ public class AuthController {
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole("ROLE_USER");
 
         return userRepo.save(user);
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody AuthRequest request) {
+    public Map<String, Object> login(@RequestBody AuthRequest request) {
 
         User user = userRepo.findByEmail(request.getEmail());
 
@@ -48,6 +52,12 @@ public class AuthController {
             throw new RuntimeException("Wrong password");
         }
 
-        return jwtService.generateToken(user.getEmail());
+        String token = jwtService.generateToken(user.getEmail());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", token);
+        response.put("role", user.getRole());
+
+        return response;
     }
 }
