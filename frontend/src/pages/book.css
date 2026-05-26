@@ -1,0 +1,82 @@
+.booking-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial;
+  }
+  
+  .steps {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .steps div {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .active-step {
+    border-bottom: 2px solid #3b82f6;
+    font-weight: bold;
+    color: #3b82f6;
+  }
+  
+  .barbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+  }
+  
+  .barber-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    background: white;
+  }
+  
+  .barber-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .times-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .time-btn {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+  }
+  
+  .active-time {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .booked-time {
+    background: #eee;
+    color: #999;
+    cursor: not-allowed;
+    text-decoration: line-through;
+  }
+  
+  .confirm-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+  }
